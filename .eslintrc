@@ -9,7 +9,8 @@
   ],
   "plugins": [
     "@typescript-eslint",
-    "react"
+    "react",
+    "emotion"
   ],
   "settings": {
     "react": {
@@ -31,6 +32,8 @@
   "rules": {
     "react/prop-types": "off",
     "react/no-unescaped-entities": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "emotion/jsx-import": "error",
+    "emotion/no-vanilla": "error"
   }
 }

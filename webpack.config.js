@@ -1,7 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = webpackEnv => {
+module.exports = (webpackEnv) => {
   console.log(webpackEnv)
   const isDevelopment = webpackEnv.NODE_ENV !== 'production'
 
@@ -29,7 +29,7 @@ module.exports = webpackEnv => {
       }),
     ],
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
+      contentBase: path.join(__dirname, 'public'),
     },
   }
 }
