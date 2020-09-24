@@ -30,6 +30,7 @@ module.exports = (webpackEnv) => {
     ],
     devServer: {
       contentBase: path.join(__dirname, 'public'),
+      historyApiFallback: true,
     },
   }
 }
