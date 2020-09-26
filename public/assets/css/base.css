@@ -2,12 +2,23 @@
   font-family: 'Sansation-Light';
   font-style: normal;
   font-display: swap;
-  font-weight: 100;
+  font-weight: 400;
   src: local('Sansation-Light'),
   local('Sansation-Light'),
   url('./fonts/Sansation-Light.ttf.woff') format('woff');
 }
 
+@font-face {
+  font-family: 'Sansation-Light';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: local('Sansation'),
+  local('Sansation'),
+  url('./fonts/Sansation-Regular-webfont.woff') format('woff');
+}
+
 body {
   font-family: 'Sansation-Light', sans-serif;
+  color: #94A1B6;
 }

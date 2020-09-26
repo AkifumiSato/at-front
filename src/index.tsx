@@ -9,7 +9,7 @@ const App: React.FC = () => (
   <Router>
     <Switch>
       <Route path={url.login} exact>
-        <Login title="Login" />
+        <Login />
       </Route>
       <Route path={url.dashboard.root} exact>
         <Dashboard title="Dashboard" />
