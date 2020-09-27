@@ -53,7 +53,7 @@ const App: React.FC = () => (
       </Route>
       <Route path={url.dashboard.root} exact>
         <PrivateWrapper>
-          <Dashboard title="Dashboard" />
+          <Dashboard />
         </PrivateWrapper>
       </Route>
       <Route>
