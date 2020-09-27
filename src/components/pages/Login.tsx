@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
-import { Link } from 'react-router-dom'
 import url from '../../config/url'
-import { color } from '../../stylesheets/color'
+import Button from '../atoms/Button'
 import Layout from '../organisms/Layout'
 
 const Login: React.FC = () => (
@@ -39,23 +38,7 @@ const Login: React.FC = () => (
         >
           Please login with Google account.
         </p>
-        <Link to={url.dashboard.root}>
-          <div
-            css={css`
-              border: 1px solid ${color.blue['200']};
-              box-shadow: ${color.blue['300']} 12px 12px 36px,
-                ${color.white} -12px -12px 36px;
-              border-radius: 10px;
-              height: 40px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 18px;
-            `}
-          >
-            Login
-          </div>
-        </Link>
+        <Button to={url.dashboard.root}>Login</Button>
       </div>
     </div>
   </Layout>
