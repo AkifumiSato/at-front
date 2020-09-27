@@ -1,7 +1,17 @@
 /** @jsx jsx */
 import * as React from 'react'
-import { css, jsx } from '@emotion/core'
+import { css, jsx, keyframes } from '@emotion/core'
 import { color } from '../../stylesheets/color'
+
+const secBounce = (start: number) => keyframes`
+  from {
+    transform: rotate(${start}deg);
+  }
+  
+  to {
+    transform: rotate(${start + 360}deg);
+  }
+`
 
 const handStyle = css`
   border-radius: 2px;
@@ -17,9 +27,13 @@ const Clock: React.FC = () => {
   const [date, setDate] = React.useState(new Date())
 
   React.useLayoutEffect(() => {
-    setTimeout(() => {
-      setDate(new Date())
-    }, 100)
+    const id = setInterval(() => {
+      const newDate = new Date()
+      if (date.getMinutes() !== newDate.getMinutes()) {
+        setDate(newDate)
+      }
+    }, 1000)
+    return () => clearInterval(id)
   }, [date, setDate])
 
   const seconds = (date.getSeconds() * 1000 + date.getMilliseconds()) / 1000
@@ -60,7 +74,7 @@ const Clock: React.FC = () => {
           background-color: ${color.blue['200']};
           height: 1px;
           width: 200px;
-          transform: rotate(${90 + seconds * (360 / 60)}deg);
+          animation: 60s ${secBounce(90 + seconds * (360 / 60))} linear infinite;
         `}
       />
     </div>
