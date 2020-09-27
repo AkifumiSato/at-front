@@ -3,6 +3,7 @@ import * as React from 'react'
 import { css, jsx } from '@emotion/core'
 import { Link } from 'react-router-dom'
 import url from '../../config/url'
+import Button from '../atoms/Button'
 import Clock from '../atoms/Clock'
 import Layout from '../organisms/Layout'
 
@@ -20,6 +21,25 @@ const Dashboard: React.FC<Props> = ({ onLogoutClick }) => (
       `}
     >
       <Clock />
+    </div>
+    <div
+      css={css`
+        display: flex;
+        justify-content: center;
+      `}
+    >
+      <div
+        css={css`
+          margin-top: 90px;
+          display: grid;
+          grid-template-columns: repeat(3, 200px);
+          grid-column-gap: 100px;
+        `}
+      >
+        <Button strong={true}>enter</Button>
+        <Button strong={true}>leave</Button>
+        <Button>list</Button>
+      </div>
     </div>
     <div
       css={css`

@@ -4,7 +4,17 @@ import { css, jsx } from '@emotion/core'
 import { Link } from 'react-router-dom'
 import { color } from '../../stylesheets/color'
 
-const buttonStyle = css`
+const strongStyle = css`
+  background: linear-gradient(
+    -45deg,
+    ${color.green['100']},
+    ${color.green['300']}
+  );
+  color: ${color.white};
+`
+
+const buttonStyle = ({ strong }: { strong: boolean }) => css`
+  ${strong ? strongStyle : ''};
   display: block;
   box-shadow: ${color.blue['300']} 15px 15px 30px,
     ${color.white} -15px -15px 30px;
@@ -57,6 +67,7 @@ type Props = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   width?: string
   icon?: string
+  strong?: boolean
 }
 
 const Button: React.FC<Props> = ({
@@ -64,6 +75,7 @@ const Button: React.FC<Props> = ({
   onClick = () => true,
   width = 'auto',
   icon,
+  strong = false,
   children,
 }) => {
   if (to) {
@@ -71,7 +83,7 @@ const Button: React.FC<Props> = ({
       <Link
         to={to}
         css={css`
-          ${buttonStyle};
+          ${buttonStyle({ strong })};
           width: ${width};
           ${iconStyle(icon)};
         `}
@@ -83,7 +95,7 @@ const Button: React.FC<Props> = ({
   return (
     <button
       css={css`
-        ${buttonStyle};
+        ${buttonStyle({ strong })};
         width: ${width};
         ${iconStyle(icon)};
       `}

@@ -6,4 +6,8 @@ export const color = {
     300: '#A3B1C6',
     400: '#94A1B6',
   },
+  green: {
+    100: '#5CF6BF',
+    300: '#4BDFFF',
+  },
 }
