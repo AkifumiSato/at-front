@@ -3,7 +3,27 @@ import * as React from 'react'
 import { css, jsx } from '@emotion/core'
 import { color } from '../../stylesheets/color'
 
+const handStyle = css`
+  border-radius: 2px;
+  position: absolute;
+  right: calc(50% - 1px);
+  top: calc(50% - 1px);
+  transform-origin: calc(100% - 1px) center;
+  background-color: ${color.blue['400']};
+  height: 2px;
+`
+
 const Clock: React.FC = () => {
+  const [date, setDate] = React.useState(new Date())
+
+  React.useLayoutEffect(() => {
+    setTimeout(() => {
+      setDate(new Date())
+    }, 100)
+  }, [date, setDate])
+
+  const seconds = (date.getSeconds() * 1000 + date.getMilliseconds()) / 1000
+
   return (
     <div
       css={css`
@@ -17,19 +37,32 @@ const Clock: React.FC = () => {
         height: 500px;
         width: 500px;
         font-size: 120px;
+        position: relative;
       `}
     >
-      <div
+      <hr
         css={css`
-          display: grid;
-          grid-template-columns: 150px 50px 150px;
-          text-align: center;
+          ${handStyle};
+          width: 125px;
+          transform: rotate(${90 + (date.getHours() % 12) * (360 / 12)}deg);
         `}
-      >
-        <span>12</span>
-        <span>:</span>
-        <span>20</span>
-      </div>
+      />
+      <hr
+        css={css`
+          ${handStyle};
+          width: 200px;
+          transform: rotate(${90 + date.getMinutes() * (360 / 60)}deg);
+        `}
+      />
+      <hr
+        css={css`
+          ${handStyle};
+          background-color: ${color.blue['200']};
+          height: 1px;
+          width: 200px;
+          transform: rotate(${90 + seconds * (360 / 60)}deg);
+        `}
+      />
     </div>
   )
 }
