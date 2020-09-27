@@ -38,7 +38,20 @@ const Login: React.FC = () => (
         >
           Please login with Google account.
         </p>
-        <Button to={url.dashboard.root}>Login</Button>
+        <div
+          css={css`
+            display: flex;
+            justify-content: center;
+          `}
+        >
+          <Button
+            to={url.dashboard.root}
+            width="250px"
+            icon="/assets/images/google.png"
+          >
+            Login
+          </Button>
+        </div>
       </div>
     </div>
   </Layout>

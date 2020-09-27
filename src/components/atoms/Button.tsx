@@ -5,12 +5,14 @@ import { Link } from 'react-router-dom'
 import { color } from '../../stylesheets/color'
 
 const buttonStyle = css`
+  display: block;
   box-shadow: ${color.blue['300']} 15px 15px 30px,
     ${color.white} -15px -15px 30px;
   border-radius: 10px;
   height: 50px;
   font-size: 20px;
   transition: box-shadow 0.5s;
+  position: relative;
 
   > span {
     border-radius: 10px;
@@ -32,21 +34,61 @@ const buttonStyle = css`
   }
 `
 
+const iconStyle = (path?: string) =>
+  path
+    ? css`
+        &:before {
+          content: '';
+          background: url(${path}) center center no-repeat;
+          background-size: 20px 20px;
+          display: block;
+          width: 20px;
+          height: 20px;
+          position: absolute;
+          top: 50%;
+          left: 15px;
+          transform: translateY(-50%);
+        }
+      `
+    : ''
+
 type Props = {
   to?: string
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+  width?: string
+  icon?: string
 }
 
-const Button: React.FC<Props> = ({ to, onClick = () => true, children }) => {
+const Button: React.FC<Props> = ({
+  to,
+  onClick = () => true,
+  width = 'auto',
+  icon,
+  children,
+}) => {
   if (to) {
     return (
-      <Link to={to} css={buttonStyle}>
+      <Link
+        to={to}
+        css={css`
+          ${buttonStyle};
+          width: ${width};
+          ${iconStyle(icon)};
+        `}
+      >
         <span>{children}</span>
       </Link>
     )
   }
   return (
-    <button css={buttonStyle} onClick={onClick}>
+    <button
+      css={css`
+        ${buttonStyle};
+        width: ${width};
+        ${iconStyle(icon)};
+      `}
+      onClick={onClick}
+    >
       <span>{children}</span>
     </button>
   )
