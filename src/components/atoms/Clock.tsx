@@ -27,13 +27,9 @@ const Clock: React.FC = () => {
   const [date, setDate] = React.useState(new Date())
 
   React.useEffect(() => {
-    const id = setInterval(() => {
-      const newDate = new Date()
-      if (Math.floor((newDate.getTime() - date.getTime()) / 1000) > 10) {
-        setDate(newDate)
-      }
-    }, 500)
-    return () => clearInterval(id)
+    setTimeout(() => {
+      setDate(new Date())
+    }, 1000)
   }, [date, setDate])
 
   const seconds = (date.getSeconds() * 1000 + date.getMilliseconds()) / 1000
