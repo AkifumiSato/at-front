@@ -26,13 +26,13 @@ const handStyle = css`
 const Clock: React.FC = () => {
   const [date, setDate] = React.useState(new Date())
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const id = setInterval(() => {
       const newDate = new Date()
-      if (date.getMinutes() !== newDate.getMinutes()) {
+      if (Math.floor((newDate.getTime() - date.getTime()) / 1000) > 10) {
         setDate(newDate)
       }
-    }, 1000)
+    }, 500)
     return () => clearInterval(id)
   }, [date, setDate])
 
