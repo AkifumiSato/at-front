@@ -67,7 +67,7 @@ const Clock: React.FC = () => {
       <hr
         css={css`
           ${handStyle};
-          background-color: ${color.blue['200']};
+          background-color: ${color.orange['200']};
           height: 1px;
           width: 200px;
           animation: 60s ${secBounce(90 + seconds * (360 / 60))} linear infinite;

@@ -5,22 +5,18 @@ import { Link } from 'react-router-dom'
 import { color } from '../../stylesheets/color'
 
 const strongStyle = css`
-  background: linear-gradient(
-    -45deg,
-    ${color.green['100']},
-    ${color.green['300']}
-  );
-  color: ${color.white};
+  color: ${color.orange['200']};
 `
 
-const buttonStyle = ({ strong }: { strong: boolean }) => css`
-  ${strong ? strongStyle : ''};
+const buttonStyle = css`
   display: block;
   box-shadow: ${color.blue['300']} 15px 15px 30px,
     ${color.white} -15px -15px 30px;
   border-radius: 10px;
+  color: ${color.blue['400']};
   height: 50px;
   font-size: 20px;
+  font-weight: bold;
   transition: box-shadow 0.5s;
   position: relative;
 
@@ -42,25 +38,19 @@ const buttonStyle = ({ strong }: { strong: boolean }) => css`
         inset ${color.white} -5px -5px 10px;
     }
   }
-`
 
-const iconStyle = (path?: string) =>
-  path
-    ? css`
-        &:before {
-          content: '';
-          background: url(${path}) center center no-repeat;
-          background-size: 20px 20px;
-          display: block;
-          width: 20px;
-          height: 20px;
-          position: absolute;
-          top: 50%;
-          left: 15px;
-          transform: translateY(-50%);
-        }
-      `
-    : ''
+  &:before {
+    content: '';
+    background-size: 20px 20px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+  }
+`
 
 type Props = {
   to?: string
@@ -83,9 +73,12 @@ const Button: React.FC<Props> = ({
       <Link
         to={to}
         css={css`
-          ${buttonStyle({ strong })};
+          :before {
+            background: ${icon ? `url(${icon}) center center no-repeat` : ''};
+          }
+          ${buttonStyle};
+          ${strong ? strongStyle : ''};
           width: ${width};
-          ${iconStyle(icon)};
         `}
       >
         <span>{children}</span>
@@ -95,9 +88,12 @@ const Button: React.FC<Props> = ({
   return (
     <button
       css={css`
-        ${buttonStyle({ strong })};
+        :before {
+          background: ${icon ? `url(${icon}) center center no-repeat` : ''};
+        }
+        ${buttonStyle};
+        ${strong ? strongStyle : ''};
         width: ${width};
-        ${iconStyle(icon)};
       `}
       onClick={onClick}
     >

@@ -10,4 +10,7 @@ export const color = {
     100: '#5CF6BF',
     300: '#4BDFFF',
   },
+  orange: {
+    200: '#F88181',
+  },
 }
