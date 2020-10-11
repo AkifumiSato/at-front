@@ -3,6 +3,7 @@ const url = {
   dashboard: {
     root: '/dashboard',
   },
+  list: '/list',
 }
 
 export default url

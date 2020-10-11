@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import Dashboard from './components/pages/Dashboard'
 import Login from './components/pages/Login'
+import List from './components/pages/List'
 import {
   BrowserRouter as Router,
   Switch,
@@ -54,6 +55,11 @@ const App: React.FC = () => (
       <Route path={url.dashboard.root} exact>
         <PrivateWrapper>
           <Dashboard />
+        </PrivateWrapper>
+      </Route>
+      <Route path={url.list} exact>
+        <PrivateWrapper>
+          <List />
         </PrivateWrapper>
       </Route>
       <Route>

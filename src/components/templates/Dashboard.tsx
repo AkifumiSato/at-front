@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
+import url from '../../config/url'
 import Button from '../atoms/Button'
 import Clock from '../atoms/Clock'
 import Layout from '../organisms/Layout'
@@ -11,7 +12,7 @@ type Props = {
 }
 
 const Dashboard: React.FC<Props> = ({ isEnter, onClick }) => (
-  <Layout>
+  <Layout next={url.list}>
     <div
       css={css`
         display: flex;

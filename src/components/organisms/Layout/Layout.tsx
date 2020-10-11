@@ -2,63 +2,17 @@
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
 import { Link } from 'react-router-dom'
-import url from '../../../config/url'
-import Logo from '../../atoms/Logo'
-
-const menuStyle = css`
-  display: flex;
-  padding: 10px;
-  font-size: 20px;
-  transition: opacity 0.5s;
-
-  &:hover {
-    opacity: 0.5;
-  }
-`
+import Header from '../../molecules/Header'
 
 type Props = {
   onLogoutClick: () => void
+  next?: string
+  prev?: string
 }
 
-const Layout: React.FC<Props> = ({ onLogoutClick, children }) => (
+const Layout: React.FC<Props> = ({ onLogoutClick, next, prev, children }) => (
   <>
-    <div
-      css={css`
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        top: 0;
-        height: 75px;
-        width: 100vw;
-        padding: 0 25px;
-      `}
-    >
-      <Logo />
-      <div
-        css={css`
-          display: flex;
-        `}
-      >
-        <Link
-          to={url.login}
-          css={css`
-            ${menuStyle};
-          `}
-        >
-          login
-        </Link>
-        <button
-          onClick={onLogoutClick}
-          css={css`
-            ${menuStyle};
-            margin-left: 30px;
-          `}
-        >
-          logout
-        </button>
-      </div>
-    </div>
+    <Header onLogoutClick={onLogoutClick} />
     <div
       css={css`
         display: flex;
@@ -67,9 +21,38 @@ const Layout: React.FC<Props> = ({ onLogoutClick, children }) => (
         min-height: 100vh;
         min-width: 100vw;
         padding: 75px 50px;
+        position: relative;
       `}
     >
+      {prev && (
+        <Link
+          to={prev}
+          css={css`
+            position: absolute;
+            top: 50%;
+            left: 75px;
+            transform: translateY(-50%);
+            padding: 25px;
+          `}
+        >
+          <img src="/assets/images/prev.svg" alt="prev" />
+        </Link>
+      )}
       <div>{children}</div>
+      {next && (
+        <Link
+          to={next}
+          css={css`
+            position: absolute;
+            top: 50%;
+            right: 75px;
+            transform: translateY(-50%);
+            padding: 25px;
+          `}
+        >
+          <img src="/assets/images/next.svg" alt="next" />
+        </Link>
+      )}
     </div>
   </>
 )
