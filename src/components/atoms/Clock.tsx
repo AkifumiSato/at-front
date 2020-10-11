@@ -58,7 +58,11 @@ const Clock: React.FC = () => {
         css={css`
           ${handStyle};
           width: 125px;
-          transform: rotate(${90 + (date.getHours() % 12) * (360 / 12)}deg);
+          transform: rotate(
+            ${90 +
+            (date.getHours() % 12) * (360 / 12) +
+            (date.getMinutes() / 12) * 6}deg
+          );
         `}
       />
       <hr
