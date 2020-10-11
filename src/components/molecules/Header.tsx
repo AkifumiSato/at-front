@@ -1,8 +1,6 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
-import { Link } from 'react-router-dom'
-import url from '../../config/url'
 import Logo from '../atoms/Logo'
 
 const menuStyle = css`
@@ -35,29 +33,14 @@ const Header: React.FC<Props> = ({ onLogoutClick }) => (
     `}
   >
     <Logo />
-    <div
+    <button
+      onClick={onLogoutClick}
       css={css`
-        display: flex;
+        ${menuStyle};
       `}
     >
-      <Link
-        to={url.login}
-        css={css`
-          ${menuStyle};
-        `}
-      >
-        login
-      </Link>
-      <button
-        onClick={onLogoutClick}
-        css={css`
-          ${menuStyle};
-          margin-left: 30px;
-        `}
-      >
-        logout
-      </button>
-    </div>
+      logout
+    </button>
   </div>
 )
 

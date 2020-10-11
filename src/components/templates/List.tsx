@@ -1,12 +1,9 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
-import { format, startOfToday } from 'date-fns'
 import url from '../../config/url'
-import Table from '../molecules/Table'
+import RecordTable from '../molecules/RecordTable'
 import Layout from '../organisms/Layout'
-
-const titles = ['date', 'start', 'end', 'break', 'sum']
 
 type Record = {
   start: Date
@@ -14,7 +11,7 @@ type Record = {
   break: number
 }
 
-const apiRecords: Record[] = [
+const records: Record[] = [
   {
     start: new Date('2020/10/01 10:12'),
     end: new Date('2020/10/01 19:34'),
@@ -32,17 +29,7 @@ const apiRecords: Record[] = [
   },
 ]
 
-const recordFormat = (record: Record) => [
-  format(record.start, 'yyyy/MM/dd'),
-  format(record.start, 'HH:mm'),
-  format(record.end, 'HH:mm'),
-  format(startOfToday().getTime() + record.break, 'HH:mm'),
-  format(record.end.getTime() - record.start.getTime(), 'HH:mm'),
-]
-
-const columns = apiRecords.map(recordFormat)
-
-const widths = ['28%', '18%', '18%', '18%']
+// todo テストデータを返却するPromiseを作成し、recoilで再実装
 
 const List: React.FC = () => (
   <Layout prev={url.dashboard.root}>
@@ -52,7 +39,7 @@ const List: React.FC = () => (
         justify-content: center;
       `}
     >
-      <Table titles={titles} columns={columns} widths={widths} />
+      <RecordTable records={records} />
     </div>
   </Layout>
 )
