@@ -14,3 +14,7 @@ export const color = {
     200: '#F88181',
   },
 }
+
+export const rgba = {
+  overlay: 'rgba(0, 0, 0, 0.25)',
+}
