@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { format, startOfToday } from 'date-fns'
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
+import { useRecoilValue } from 'recoil'
+import { attendanceCalculatedTableState } from '../../recoil/selectors'
 import { color } from '../../stylesheets/color'
 
 const Title: React.FC = ({ children }) => (
@@ -15,26 +16,8 @@ const Title: React.FC = ({ children }) => (
   </th>
 )
 
-const recordFormat = (record: Record) => [
-  format(record.start, 'yyyy/MM/dd'),
-  format(record.start, 'HH:mm'),
-  format(record.end, 'HH:mm'),
-  format(startOfToday().getTime() + record.break, 'HH:mm'),
-  format(record.end.getTime() - record.start.getTime(), 'HH:mm'),
-]
-
-type Record = {
-  start: Date
-  end: Date
-  break: number
-}
-
-type Props = {
-  records: Record[]
-}
-
-const RecordTable: React.FC<Props> = ({ records }) => {
-  const columns = records.map(recordFormat)
+const RecordTable: React.FC = () => {
+  const columns = useRecoilValue(attendanceCalculatedTableState)
 
   return (
     <table

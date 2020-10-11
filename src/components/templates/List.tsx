@@ -5,31 +5,8 @@ import url from '../../config/url'
 import RecordTable from '../molecules/RecordTable'
 import Layout from '../organisms/Layout'
 
-type Record = {
-  start: Date
-  end: Date
-  break: number
-}
-
-const records: Record[] = [
-  {
-    start: new Date('2020/10/01 10:12'),
-    end: new Date('2020/10/01 19:34'),
-    break: 3600000,
-  },
-  {
-    start: new Date('2020/10/01 10:12'),
-    end: new Date('2020/10/01 19:34'),
-    break: 3600000,
-  },
-  {
-    start: new Date('2020/10/01 10:12'),
-    end: new Date('2020/10/01 19:34'),
-    break: 3600000,
-  },
-]
-
-// todo テストデータを返却するPromiseを作成し、recoilで再実装
+// todo テストデータを返却するPromiseを作成し、recoilでfetchするところまで実装
+// todo editなど作成
 
 const List: React.FC = () => (
   <Layout prev={url.dashboard.root}>
@@ -39,7 +16,7 @@ const List: React.FC = () => (
         justify-content: center;
       `}
     >
-      <RecordTable records={records} />
+      <RecordTable />
     </div>
   </Layout>
 )

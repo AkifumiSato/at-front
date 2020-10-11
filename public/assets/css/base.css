@@ -22,4 +22,5 @@ body {
   font-family: 'Sansation-Light', sans-serif;
   color: #0E2A4A;
   background-color: #E0E5EC;
+  min-width: 960px;
 }

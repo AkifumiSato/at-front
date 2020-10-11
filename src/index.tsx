@@ -1,5 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import { RecoilRoot } from 'recoil'
 import Dashboard from './components/pages/Dashboard'
 import Login from './components/pages/Login'
 import List from './components/pages/List'
@@ -45,28 +46,30 @@ const PrivateWrapper: React.FC = ({ children }) => {
 }
 
 const App: React.FC = () => (
-  <Router>
-    <Switch>
-      <Route path={url.login} exact>
-        <LoginCheck>
-          <Login />
-        </LoginCheck>
-      </Route>
-      <Route path={url.dashboard.root} exact>
-        <PrivateWrapper>
-          <Dashboard />
-        </PrivateWrapper>
-      </Route>
-      <Route path={url.list} exact>
-        <PrivateWrapper>
-          <List />
-        </PrivateWrapper>
-      </Route>
-      <Route>
-        <p>Not Found...</p>
-      </Route>
-    </Switch>
-  </Router>
+  <RecoilRoot>
+    <Router>
+      <Switch>
+        <Route path={url.login} exact>
+          <LoginCheck>
+            <Login />
+          </LoginCheck>
+        </Route>
+        <Route path={url.dashboard.root} exact>
+          <PrivateWrapper>
+            <Dashboard />
+          </PrivateWrapper>
+        </Route>
+        <Route path={url.list} exact>
+          <PrivateWrapper>
+            <List />
+          </PrivateWrapper>
+        </Route>
+        <Route>
+          <p>Not Found...</p>
+        </Route>
+      </Switch>
+    </Router>
+  </RecoilRoot>
 )
 
 ReactDOM.render(<App />, document.getElementById('root'))
