@@ -4,6 +4,7 @@ import { css, jsx } from '@emotion/core'
 import { useRecoilValue } from 'recoil'
 import { attendanceCalculatedTableState } from '../../recoil/selectors'
 import { color } from '../../stylesheets/color'
+import Loader from '../atoms/Loader'
 
 const Title: React.FC = ({ children }) => (
   <th
@@ -16,10 +17,39 @@ const Title: React.FC = ({ children }) => (
   </th>
 )
 
-const RecordTable: React.FC = () => {
+const RecordDetail: React.FC = () => {
   const columns = useRecoilValue(attendanceCalculatedTableState)
 
   return (
+    <tbody>
+      {columns.map((column, i) => (
+        <tr
+          key={i}
+          css={css`
+            &:not(:last-child) {
+              border-bottom: 1px solid ${color.blue['200']};
+            }
+          `}
+        >
+          {column.map((item, i) => (
+            <td
+              key={i}
+              css={css`
+                padding: 20px 30px;
+                font-size: 18px;
+              `}
+            >
+              {item}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  )
+}
+
+const RecordTable: React.FC = () => (
+  <React.Suspense fallback={<Loader />}>
     <table
       css={css`
         border-radius: 10px;
@@ -48,32 +78,9 @@ const RecordTable: React.FC = () => {
           <Title>sum</Title>
         </tr>
       </thead>
-      <tbody>
-        {columns.map((column, i) => (
-          <tr
-            key={i}
-            css={css`
-              &:not(:last-child) {
-                border-bottom: 1px solid ${color.blue['200']};
-              }
-            `}
-          >
-            {column.map((item, i) => (
-              <td
-                key={i}
-                css={css`
-                  padding: 20px 30px;
-                  font-size: 18px;
-                `}
-              >
-                {item}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
+      <RecordDetail />
     </table>
-  )
-}
+  </React.Suspense>
+)
 
 export default React.memo(RecordTable)
