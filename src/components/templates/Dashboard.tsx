@@ -11,8 +11,7 @@ const Dashboard: React.FC = () => (
       css={css`
         display: flex;
         justify-content: center;
-src/components/templates/Login.tsx:12:4
-src/components/templates/Login.tsx:12:4`}
+      `}
     >
       <Clock />
     </div>

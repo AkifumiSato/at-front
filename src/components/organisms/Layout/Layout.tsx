@@ -34,8 +34,7 @@ const Layout: React.FC<Props> = ({ onLogoutClick, children }) => (
         justify-content: center;
         min-height: 100vh;
         min-width: 100vw;
-        box-sizing: border-box;
-        padding: 75px 50px 50px;
+        padding: 75px 50px;
       `}
     >
       <div>{children}</div>

@@ -23,6 +23,7 @@ const Login: React.FC<Props> = ({ onLoginClick }) => (
           grid-template-columns: 1fr;
           grid-row-gap: 30px;
           text-align: center;
+          padding-bottom: 100px;
         `}
       >
         <h1
