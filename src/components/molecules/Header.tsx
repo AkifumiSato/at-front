@@ -31,6 +31,7 @@ const Header: React.FC<Props> = ({ onLogoutClick }) => (
       height: 75px;
       width: 100vw;
       padding: 0 25px;
+      z-index: 1;
     `}
   >
     <Logo />
