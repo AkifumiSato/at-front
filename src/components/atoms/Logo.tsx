@@ -5,7 +5,12 @@ import { Link } from 'react-router-dom'
 import url from '../../config/url'
 
 const Logo: React.FC = () => (
-  <Link to={url.dashboard.root}>
+  <Link
+    to={url.dashboard.root}
+    css={css`
+      display: block;
+    `}
+  >
     <img
       src="/assets/images/logo.svg"
       alt="AT"

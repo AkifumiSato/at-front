@@ -13,7 +13,6 @@ const Login: React.FC<Props> = ({ onLoginClick }) => (
     <div
       css={css`
         font-size: 24px;
-        margin-top: 200px;
         display: flex;
         justify-content: center;
       `}
