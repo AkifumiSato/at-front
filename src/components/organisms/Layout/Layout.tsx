@@ -65,7 +65,14 @@ const Layout: React.FC<Props> = ({ onLogoutClick, next, prev, children }) => {
             <img src="/assets/images/prev.svg" alt="prev" />
           </Link>
         )}
-        <div>{children}</div>
+        <div
+          css={css`
+            padding: 0 150px;
+            width: 100%;
+          `}
+        >
+          {children}
+        </div>
         {next && (
           <Link
             to={next}

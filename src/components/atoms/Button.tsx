@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
-import { Link } from 'react-router-dom'
 import { color } from '../../stylesheets/color'
 
 const strongStyle = css`
@@ -61,45 +60,25 @@ type Props = {
 }
 
 const Button: React.FC<Props> = ({
-  to,
   onClick = () => true,
   width = 'auto',
   icon,
   strong = false,
   children,
-}) => {
-  if (to) {
-    return (
-      <Link
-        to={to}
-        css={css`
-          :before {
-            background: ${icon ? `url(${icon}) center center no-repeat` : ''};
-          }
-          ${buttonStyle};
-          ${strong ? strongStyle : ''};
-          width: ${width};
-        `}
-      >
-        <span>{children}</span>
-      </Link>
-    )
-  }
-  return (
-    <button
-      css={css`
-        :before {
-          background: ${icon ? `url(${icon}) center center no-repeat` : ''};
-        }
-        ${buttonStyle};
-        ${strong ? strongStyle : ''};
-        width: ${width};
-      `}
-      onClick={onClick}
-    >
-      <span>{children}</span>
-    </button>
-  )
-}
+}) => (
+  <button
+    css={css`
+      :before {
+        background: ${icon ? `url(${icon}) center center no-repeat` : ''};
+      }
+      ${buttonStyle};
+      ${strong ? strongStyle : ''};
+      width: ${width};
+    `}
+    onClick={onClick}
+  >
+    <span>{children}</span>
+  </button>
+)
 
 export default Button
