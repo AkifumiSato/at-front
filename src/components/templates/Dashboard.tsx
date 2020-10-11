@@ -5,7 +5,12 @@ import Button from '../atoms/Button'
 import Clock from '../atoms/Clock'
 import Layout from '../organisms/Layout'
 
-const Dashboard: React.FC = () => (
+type Props = {
+  isEnter: boolean
+  onClick: () => void
+}
+
+const Dashboard: React.FC<Props> = ({ isEnter, onClick }) => (
   <Layout>
     <div
       css={css`
@@ -22,8 +27,8 @@ const Dashboard: React.FC = () => (
         margin-top: 75px;
       `}
     >
-      <Button strong={true} width="200px">
-        enter
+      <Button strong={true} width="200px" onClick={onClick}>
+        {isEnter ? 'leave' : 'enter'}
       </Button>
     </div>
   </Layout>

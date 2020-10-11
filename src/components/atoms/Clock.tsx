@@ -85,4 +85,4 @@ const Clock: React.FC = () => {
   )
 }
 
-export default Clock
+export default React.memo(Clock)
