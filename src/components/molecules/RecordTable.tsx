@@ -43,6 +43,27 @@ const RecordDetail: React.FC = () => {
               {item}
             </td>
           ))}
+          <td
+            css={css`
+              padding: 20px 30px;
+              font-size: 18px;
+            `}
+          >
+            <div
+              css={css`
+                display: flex;
+              `}
+            >
+              <button>edit</button>
+              <button
+                css={css`
+                  margin-left: 30px;
+                `}
+              >
+                delete
+              </button>
+            </div>
+          </td>
         </tr>
       ))}
     </tbody>
@@ -69,11 +90,12 @@ const RecordTable: React.FC = () => (
         `}
       >
         <colgroup>
-          <col width="28%" />
           <col width="18%" />
-          <col width="18%" />
-          <col width="18%" />
-          <col width="18%" />
+          <col width="13%" />
+          <col width="13%" />
+          <col width="13%" />
+          <col width="13%" />
+          <col width="30%" />
         </colgroup>
         <thead>
           <tr
@@ -86,6 +108,7 @@ const RecordTable: React.FC = () => (
             <Title>end</Title>
             <Title>break</Title>
             <Title>sum</Title>
+            <Title>menu</Title>
           </tr>
         </thead>
         <RecordDetail />

@@ -57,7 +57,7 @@ const Layout: React.FC<Props> = ({ onLogoutClick, next, prev, children }) => {
             css={css`
               position: absolute;
               top: 50%;
-              left: 75px;
+              left: 50px;
               transform: translateY(-50%);
               padding: 25px;
             `}
@@ -67,7 +67,7 @@ const Layout: React.FC<Props> = ({ onLogoutClick, next, prev, children }) => {
         )}
         <div
           css={css`
-            padding: 0 150px;
+            padding: 0 100px;
             width: 100%;
           `}
         >
@@ -79,7 +79,7 @@ const Layout: React.FC<Props> = ({ onLogoutClick, next, prev, children }) => {
             css={css`
               position: absolute;
               top: 50%;
-              right: 75px;
+              right: 50px;
               transform: translateY(-50%);
               padding: 25px;
             `}
