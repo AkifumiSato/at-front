@@ -4,6 +4,7 @@ import { css, jsx } from '@emotion/core'
 import { useRecoilValue } from 'recoil'
 import { attendanceCalculatedTableState } from '../../recoil/selectors'
 import { color } from '../../stylesheets/color'
+import { ErrorBoundary } from '../atoms/ErrorBoundary'
 import Loader from '../atoms/Loader'
 
 const Title: React.FC = ({ children }) => (
@@ -49,38 +50,48 @@ const RecordDetail: React.FC = () => {
 }
 
 const RecordTable: React.FC = () => (
-  <React.Suspense fallback={<Loader />}>
-    <table
-      css={css`
-        border-radius: 10px;
-        box-shadow: inset ${color.blue['300']} 5px 5px 10px,
-          inset ${color.white} -5px -5px 10px;
-        width: 50%;
-      `}
-    >
-      <colgroup>
-        <col width="28%" />
-        <col width="18%" />
-        <col width="18%" />
-        <col width="18%" />
-        <col width="18%" />
-      </colgroup>
-      <thead>
-        <tr
-          css={css`
-            border-bottom: 1px solid ${color.blue['200']};
-          `}
-        >
-          <Title>date</Title>
-          <Title>start</Title>
-          <Title>end</Title>
-          <Title>break</Title>
-          <Title>sum</Title>
-        </tr>
-      </thead>
-      <RecordDetail />
-    </table>
-  </React.Suspense>
+  <ErrorBoundary
+    fallback={
+      <p>
+        エラーが発生しました。
+        <br />
+        リロードするか時間を置いてから再度アクセスしてください。
+      </p>
+    }
+  >
+    <React.Suspense fallback={<Loader />}>
+      <table
+        css={css`
+          border-radius: 10px;
+          box-shadow: inset ${color.blue['300']} 5px 5px 10px,
+            inset ${color.white} -5px -5px 10px;
+          width: 50%;
+        `}
+      >
+        <colgroup>
+          <col width="28%" />
+          <col width="18%" />
+          <col width="18%" />
+          <col width="18%" />
+          <col width="18%" />
+        </colgroup>
+        <thead>
+          <tr
+            css={css`
+              border-bottom: 1px solid ${color.blue['200']};
+            `}
+          >
+            <Title>date</Title>
+            <Title>start</Title>
+            <Title>end</Title>
+            <Title>break</Title>
+            <Title>sum</Title>
+          </tr>
+        </thead>
+        <RecordDetail />
+      </table>
+    </React.Suspense>
+  </ErrorBoundary>
 )
 
 export default React.memo(RecordTable)
