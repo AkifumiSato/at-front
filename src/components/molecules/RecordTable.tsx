@@ -18,6 +18,33 @@ const Title: React.FC = ({ children }) => (
   </th>
 )
 
+type ButtonProps = {
+  textColor: string
+}
+
+const Button: React.FC<ButtonProps> = ({ textColor, children }) => (
+  <button
+    css={css`
+      border-radius: 5px;
+      color: ${textColor};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding-top: 4px;
+      width: 80px;
+      transition: box-shadow 0.5s;
+
+      &:hover {
+        box-shadow: inset ${color.gray['300']} 2px 2px 5px,
+          inset ${color.white} -2px -2px 5px;
+      }
+    `}
+  >
+    {children}
+  </button>
+)
+
 const RecordDetail: React.FC = () => {
   const columns = useRecoilValue(attendanceCalculatedTableState)
 
@@ -28,7 +55,7 @@ const RecordDetail: React.FC = () => {
           key={i}
           css={css`
             &:not(:last-child) {
-              border-bottom: 1px solid ${color.blue['200']};
+              border-bottom: 1px solid ${color.gray['200']};
             }
           `}
         >
@@ -45,23 +72,19 @@ const RecordDetail: React.FC = () => {
           ))}
           <td
             css={css`
-              padding: 20px 30px;
               font-size: 18px;
+              vertical-align: middle;
             `}
           >
             <div
               css={css`
                 display: flex;
+                justify-content: space-around;
+                width: 200px;
               `}
             >
-              <button>edit</button>
-              <button
-                css={css`
-                  margin-left: 30px;
-                `}
-              >
-                delete
-              </button>
+              <Button textColor={color.green['300']}>edit</Button>
+              <Button textColor={color.orange['200']}>delete</Button>
             </div>
           </td>
         </tr>
@@ -84,23 +107,26 @@ const RecordTable: React.FC = () => (
       <table
         css={css`
           border-radius: 10px;
-          box-shadow: inset ${color.blue['300']} 5px 5px 10px,
+          box-shadow: inset ${color.gray['300']} 5px 5px 10px,
             inset ${color.white} -5px -5px 10px;
-          width: 50%;
+          table-layout: fixed;
+          width: 80%;
+          min-width: 800px;
+          max-width: 1000px;
         `}
       >
         <colgroup>
-          <col width="18%" />
-          <col width="13%" />
-          <col width="13%" />
-          <col width="13%" />
-          <col width="13%" />
-          <col width="30%" />
+          <col width="19%" />
+          <col width="14%" />
+          <col width="14%" />
+          <col width="14%" />
+          <col width="14%" />
+          <col width="25%" />
         </colgroup>
         <thead>
           <tr
             css={css`
-              border-bottom: 1px solid ${color.blue['200']};
+              border-bottom: 1px solid ${color.gray['200']};
             `}
           >
             <Title>date</Title>

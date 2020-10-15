@@ -19,7 +19,7 @@ const handStyle = css`
   right: calc(50% - 1px);
   top: calc(50% - 1px);
   transform-origin: calc(100% - 1px) center;
-  background-color: ${color.blue['400']};
+  background-color: ${color.gray['400']};
   height: 2px;
 `
 
@@ -44,8 +44,7 @@ const Clock: React.FC = () => {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: ${color.blue['200']};
-        box-shadow: ${color.blue['300']} 20px 20px 50px,
+        box-shadow: ${color.gray['300']} 20px 20px 50px,
           ${color.white} -20px -20px 50px;
         border-radius: 50%;
         height: 500px;

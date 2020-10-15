@@ -1,6 +1,6 @@
 export const color = {
   white: '#fff',
-  blue: {
+  gray: {
     100: '#E0E5EC',
     200: '#C2CBD9',
     300: '#A3B1C6',
@@ -8,6 +8,9 @@ export const color = {
   },
   green: {
     100: '#5CF6BF',
+    300: '#08d48b',
+  },
+  blue: {
     300: '#4BDFFF',
   },
   orange: {

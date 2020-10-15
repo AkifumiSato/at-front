@@ -9,10 +9,10 @@ const strongStyle = css`
 
 const buttonStyle = css`
   display: block;
-  box-shadow: ${color.blue['300']} 15px 15px 30px,
+  box-shadow: ${color.gray['300']} 15px 15px 30px,
     ${color.white} -15px -15px 30px;
   border-radius: 10px;
-  color: ${color.blue['400']};
+  color: ${color.gray['400']};
   height: 50px;
   font-size: 20px;
   font-weight: bold;
@@ -33,7 +33,7 @@ const buttonStyle = css`
     box-shadow: none;
 
     > span {
-      box-shadow: inset ${color.blue['300']} 5px 5px 10px,
+      box-shadow: inset ${color.gray['300']} 5px 5px 10px,
         inset ${color.white} -5px -5px 10px;
     }
   }
