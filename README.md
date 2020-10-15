@@ -7,11 +7,13 @@ This app is `at` app front code.
 Login with Google auth.
 
 
+
 ## Dashboard
 ### top
 ![dashboard top page.](doc/assets/top.png "clock top")
 
 Top has Clock view & attendance button.
+
 
 
 ### table
