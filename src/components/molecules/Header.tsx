@@ -1,6 +1,9 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
+import { Redirect } from 'react-router-dom'
+import url from '../../config/url'
+import { logout } from '../../lib/api/firebase'
 import Logo from '../atoms/Logo'
 
 const menuStyle = css`
@@ -14,34 +17,41 @@ const menuStyle = css`
   }
 `
 
-type Props = {
-  onLogoutClick: () => void
-}
+const Header: React.FC = () => {
+  const [isLogoutComplete, setIsLogoutComplete] = React.useState(false)
 
-const Header: React.FC<Props> = ({ onLogoutClick }) => (
-  <div
-    css={css`
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: fixed;
-      top: 0;
-      height: 75px;
-      width: 100vw;
-      padding: 0 25px;
-      z-index: 1;
-    `}
-  >
-    <Logo />
-    <button
-      onClick={onLogoutClick}
+  const onLogoutClick = () =>
+    logout()
+      .then(() => setIsLogoutComplete(true))
+      .catch((e) => console.log(e))
+
+  if (isLogoutComplete) return <Redirect to={url.login} />
+
+  return (
+    <div
       css={css`
-        ${menuStyle};
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        height: 75px;
+        width: 100vw;
+        padding: 0 25px;
+        z-index: 1;
       `}
     >
-      logout
-    </button>
-  </div>
-)
+      <Logo />
+      <button
+        onClick={onLogoutClick}
+        css={css`
+          ${menuStyle};
+        `}
+      >
+        logout
+      </button>
+    </div>
+  )
+}
 
 export default React.memo(Header)

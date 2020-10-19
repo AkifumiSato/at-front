@@ -2,15 +2,14 @@
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
 import { Link, useHistory } from 'react-router-dom'
-import Header from '../../molecules/Header'
+import Header from '../molecules/Header'
 
 type Props = {
-  onLogoutClick: () => void
   next?: string
   prev?: string
 }
 
-const Layout: React.FC<Props> = ({ onLogoutClick, next, prev, children }) => {
+const Layout: React.FC<Props> = ({ next, prev, children }) => {
   const history = useHistory()
   const wrapperDom = React.useRef<HTMLDivElement>(null)
 
@@ -32,7 +31,7 @@ const Layout: React.FC<Props> = ({ onLogoutClick, next, prev, children }) => {
 
   return (
     <>
-      <Header onLogoutClick={onLogoutClick} />
+      <Header />
       <div
         ref={wrapperDom}
         onKeyDown={onKeyDown}
