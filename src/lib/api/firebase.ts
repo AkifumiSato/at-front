@@ -27,6 +27,7 @@ class FirebaseAuthState {
 
   async getUser() {
     return new Promise<User>((resolve, reject) => {
+      console.log('%cauth get start.', 'background: green;')
       this.auth.onAuthStateChanged((user) => {
         if (user) {
           resolve(user)

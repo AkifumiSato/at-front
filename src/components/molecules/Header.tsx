@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
-import { Redirect } from 'react-router-dom'
-import url from '../../config/url'
-import { logout } from '../../lib/api/firebase'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { isUserWantLogoutState } from '../../recoil/atoms'
+import { isUserLoginState } from '../../recoil/selectors'
 import Logo from '../atoms/Logo'
 
 const menuStyle = css`
@@ -18,14 +18,10 @@ const menuStyle = css`
 `
 
 const Header: React.FC = () => {
-  const [isLogoutComplete, setIsLogoutComplete] = React.useState(false)
+  const isLogin = useRecoilValue(isUserLoginState)
+  const setUserWantLogout = useSetRecoilState(isUserWantLogoutState)
 
-  const onLogoutClick = () =>
-    logout()
-      .then(() => setIsLogoutComplete(true))
-      .catch((e) => console.log(e))
-
-  if (isLogoutComplete) return <Redirect to={url.login} />
+  const onLogoutClick = () => setUserWantLogout(true)
 
   return (
     <div
@@ -42,14 +38,16 @@ const Header: React.FC = () => {
       `}
     >
       <Logo />
-      <button
-        onClick={onLogoutClick}
-        css={css`
-          ${menuStyle};
-        `}
-      >
-        logout
-      </button>
+      {isLogin && (
+        <button
+          onClick={onLogoutClick}
+          css={css`
+            ${menuStyle};
+          `}
+        >
+          logout
+        </button>
+      )}
     </div>
   )
 }

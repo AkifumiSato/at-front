@@ -15,6 +15,7 @@ const secBounce = (start: number) => keyframes`
 
 const handStyle = css`
   border-radius: 2px;
+  border: none;
   position: absolute;
   right: calc(50% - 1px);
   top: calc(50% - 1px);
