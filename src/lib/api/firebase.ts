@@ -48,8 +48,11 @@ class FirebaseAuthState {
     }
   }
 
-  async signOut() {
-    await this.auth.signOut()
+  signOut() {
+    return this.auth.signOut().catch((e) => {
+      console.error('logout failed', e)
+      return Promise.reject(e)
+    })
   }
 }
 

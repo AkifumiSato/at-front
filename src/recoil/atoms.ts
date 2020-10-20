@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-export const isUserWantLogoutState = atom<boolean>({
-  key: 'isUserWantLogoutState',
-  default: false,
+export const userLogoutTriggerCountState = atom({
+  key: 'userLogoutTriggerCountState',
+  default: 0,
 })

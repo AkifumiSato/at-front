@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { isUserWantLogoutState } from '../../recoil/atoms'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
+import { logout } from '../../lib/api/firebase'
 import { isUserLoginState } from '../../recoil/selectors'
 import Logo from '../atoms/Logo'
 
@@ -19,9 +19,12 @@ const menuStyle = css`
 
 const Header: React.FC = () => {
   const isLogin = useRecoilValue(isUserLoginState)
-  const setUserWantLogout = useSetRecoilState(isUserWantLogoutState)
+  const resetLogin = useResetRecoilState(isUserLoginState)
 
-  const onLogoutClick = () => setUserWantLogout(true)
+  const onLogoutClick = async () => {
+    await logout()
+    resetLogin()
+  }
 
   return (
     <div
