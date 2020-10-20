@@ -13,9 +13,13 @@ import {
   Redirect,
 } from 'react-router-dom'
 import url from './config/url'
+import { sleepSuspendFactory } from './lib/util/sleeper'
 import { isUserLoginState } from './recoil/selectors'
 
+const sleep = sleepSuspendFactory(500)
+
 const NotLoginCheck: React.FC = ({ children }) => {
+  sleep.suspend()
   const isLogin = useRecoilValue(isUserLoginState)
   if (isLogin) return <Redirect to={url.dashboard.root} />
 
