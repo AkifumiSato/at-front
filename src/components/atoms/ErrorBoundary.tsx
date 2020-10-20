@@ -20,7 +20,15 @@ export class ErrorBoundary extends React.Component<Props, State> {
 
   render() {
     if (this.state.hasError) {
-      return this.props.fallback ?? <>error</>
+      return (
+        this.props.fallback ?? (
+          <p>
+            エラーが発生しました。
+            <br />
+            リロードするか時間を置いてから再度アクセスしてください。
+          </p>
+        )
+      )
     }
 
     return this.props.children

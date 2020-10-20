@@ -94,15 +94,7 @@ const RecordDetail: React.FC = () => {
 }
 
 const RecordTable: React.FC = () => (
-  <ErrorBoundary
-    fallback={
-      <p>
-        エラーが発生しました。
-        <br />
-        リロードするか時間を置いてから再度アクセスしてください。
-      </p>
-    }
-  >
+  <ErrorBoundary>
     <React.Suspense fallback={<Loader />}>
       <table
         css={css`
