@@ -5,7 +5,7 @@ import { sleep } from '../util/sleeper'
 export const fetchRecords = async (user: User): Promise<Record[]> => {
   console.log(`%cfetch start. user is...`, 'background: green;')
   console.log(user)
-  await sleep(2000)
+  await sleep(1000)
   return [
     {
       start: new Date('2020/10/01 10:12'),
