@@ -9,8 +9,8 @@ const strongStyle = css`
 
 const buttonStyle = css`
   display: block;
-  box-shadow: ${color.gray['300']} 15px 15px 30px,
-    ${color.white} -15px -15px 30px;
+  box-shadow: ${color.gray['300']} 10px 10px 30px,
+    ${color.white} -10px -10px 30px;
   border-radius: 10px;
   color: ${color.gray['400']};
   height: 50px;
