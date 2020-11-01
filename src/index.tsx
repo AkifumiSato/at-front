@@ -28,7 +28,7 @@ const NotLoginCheck: React.FC = ({ children }) => {
 
 const LoginCheck: React.FC = ({ children }) => {
   const isLogin = useRecoilValue(isUserLoginState)
-  if (!isLogin) return <Redirect to={url.login} />
+  if (!isLogin) return <Redirect to={url.root} />
 
   return <>{children}</>
 }
@@ -43,13 +43,6 @@ const App: React.FC = () => (
   <RecoilRoot>
     <Router>
       <Switch>
-        <Route path={url.login} exact>
-          <LoadingSuspense>
-            <NotLoginCheck>
-              <Login />
-            </NotLoginCheck>
-          </LoadingSuspense>
-        </Route>
         <Route path={url.dashboard.root} exact>
           <LoadingSuspense>
             <LoginCheck>
@@ -62,6 +55,13 @@ const App: React.FC = () => (
             <LoginCheck>
               <List />
             </LoginCheck>
+          </LoadingSuspense>
+        </Route>
+        <Route path={url.root} exact>
+          <LoadingSuspense>
+            <NotLoginCheck>
+              <Login />
+            </NotLoginCheck>
           </LoadingSuspense>
         </Route>
         <Route>

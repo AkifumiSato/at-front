@@ -1,5 +1,5 @@
 const url = {
-  login: '/login',
+  root: '/',
   dashboard: {
     root: '/dashboard',
   },
