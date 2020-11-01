@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { sleep } from '../../lib/util/sleeper'
-import Loader from '../atoms/Loader'
 import Dashboard from '../templates/Dashboard'
 
 const DashboardPage: React.FC = () => {
@@ -14,12 +13,7 @@ const DashboardPage: React.FC = () => {
     setLoading(false)
   }
 
-  return (
-    <>
-      {loading && <Loader />}
-      <Dashboard isEnter={isEnter} onClick={onClick} />
-    </>
-  )
+  return <Dashboard isEnter={isEnter} loading={loading} onClick={onClick} />
 }
 
 export default DashboardPage
