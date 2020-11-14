@@ -13,6 +13,10 @@ export const color = {
   blue: {
     300: '#4BDFFF',
   },
+  navy: {
+    300: '#3E6086',
+    400: '#0E2A4A',
+  },
   orange: {
     200: '#F88181',
   },

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
+import { color } from '../../stylesheets/color'
 import Button from '../atoms/Button'
 import Layout from '../organisms/Layout'
 
@@ -54,6 +55,19 @@ const Login: React.FC<Props> = ({ onLoginClick }) => (
           >
             Login
           </Button>
+        </div>
+        <div
+          css={css`
+            color: ${color.navy['300']};
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 20px;
+            width: 500px;
+          `}
+        >
+          本サイトは現在開発中の、個人利用を目的としたアルファ版です。
+          <br />
+          利用に際しては利用者が一切の責任を負うこととします。
         </div>
       </div>
     </div>
