@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions'
-import { Record } from '../../src/types/entities'
+import { Record } from '../types/entities'
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
@@ -13,9 +13,10 @@ type RecordGetterResponse = {
   records: Record[]
 }
 
-export const attendanceRecordGetter = functions.https.onRequest(
-  (_request, response: functions.Response<RecordGetterResponse>) => {
-    functions.logger.info('Hello logs!', { structuredData: true })
+export const attendanceRecordGetter = functions.https.onCall(
+  (_data, context): RecordGetterResponse => {
+    console.log('context.auth: ' + JSON.stringify(context.auth))
+    functions.logger.info('attendanceRecordGetter', { structuredData: true })
 
     const apiResponse = [
       {
@@ -35,12 +36,12 @@ export const attendanceRecordGetter = functions.https.onRequest(
       },
     ]
 
-    response.send({
+    return {
       records: apiResponse.map((item) => ({
         ...item,
         start: new Date(item.start),
         end: new Date(item.end),
       })),
-    })
+    }
   }
 )
