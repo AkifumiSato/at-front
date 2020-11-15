@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "module": "commonjs",
+    "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    "skipLibCheck": true
   },
+  "exclude": [
+    "node_modules"
+  ],
   "compileOnSave": true,
   "include": [
     "src"
