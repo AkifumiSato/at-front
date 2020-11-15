@@ -1,32 +1,31 @@
 import { User } from 'firebase'
 import { Record } from '../../types/entities'
-import { sleep } from '../util/sleeper'
+
+type RecordGetterResponse = {
+  result: {
+    records: Record[]
+  }
+}
 
 export const fetchRecords = async (user: User): Promise<Record[]> => {
   console.log(`%cfetch start. user is...`, 'background: green;')
   console.log(user)
 
-  await sleep(1000)
+  // todo env
+  // todo on `npm run start`, add run functions process
+  const url =
+    'http://localhost:5001/at-app-4dbad/us-central1/attendanceRecordGetter'
+  const res: RecordGetterResponse = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      data: {},
+    }),
+  }).then((res) => res.json())
 
-  const apiResponse = [
-    {
-      start: 1601514720000,
-      end: 1601634840000,
-      break: 3600000,
-    },
-    {
-      start: 1601601120000,
-      end: 1601721240000,
-      break: 3600000,
-    },
-    {
-      start: 1601687520000,
-      end: 1601721240000,
-      break: 7200000,
-    },
-  ]
-
-  return apiResponse.map((item) => ({
+  return res.result.records.map((item) => ({
     ...item,
     start: new Date(item.start),
     end: new Date(item.end),

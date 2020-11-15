@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "webpack-dev-server --env.NODE_ENV=development",
+    "build": "webpack --env.NODE_ENV=production",
     "type-check": "tsc",
     "lint": "eslint './**/*.{ts,tsx}'",
     "fix": "eslint './**/*.{ts,tsx}' --fix",

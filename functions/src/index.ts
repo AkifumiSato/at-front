@@ -1,5 +1,4 @@
 import * as functions from 'firebase-functions'
-import { Record } from '../types/entities'
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
@@ -10,7 +9,11 @@ export const helloWorld = functions.https.onRequest((_request, response) => {
 })
 
 type RecordGetterResponse = {
-  records: Record[]
+  records: Array<{
+    start: number
+    end: number
+    break: number
+  }>
 }
 
 export const attendanceRecordGetter = functions.https.onCall(
@@ -22,7 +25,7 @@ export const attendanceRecordGetter = functions.https.onCall(
       {
         start: 1601514720000,
         end: 1601634840000,
-        break: 3600000,
+        break: 7200000,
       },
       {
         start: 1601601120000,
@@ -37,11 +40,7 @@ export const attendanceRecordGetter = functions.https.onCall(
     ]
 
     return {
-      records: apiResponse.map((item) => ({
-        ...item,
-        start: new Date(item.start),
-        end: new Date(item.end),
-      })),
+      records: apiResponse,
     }
   }
 )
