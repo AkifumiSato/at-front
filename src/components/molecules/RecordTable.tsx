@@ -135,4 +135,4 @@ const RecordTable: React.FC = () => (
   </ErrorBoundary>
 )
 
-export default React.memo(RecordTable)
+export default RecordTable

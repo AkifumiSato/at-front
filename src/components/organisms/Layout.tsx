@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import { SerializedStyles } from '@emotion/serialize'
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
 import { Link, useHistory } from 'react-router-dom'
@@ -7,9 +8,10 @@ import Header from '../molecules/Header'
 type Props = {
   next?: string
   prev?: string
+  innerStyle?: SerializedStyles
 }
 
-const Layout: React.FC<Props> = ({ next, prev, children }) => {
+const Layout: React.FC<Props> = ({ next, prev, innerStyle, children }) => {
   const history = useHistory()
   const wrapperDom = React.useRef<HTMLDivElement>(null)
 
@@ -37,9 +39,6 @@ const Layout: React.FC<Props> = ({ next, prev, children }) => {
         onKeyDown={onKeyDown}
         tabIndex={-1}
         css={css`
-          display: flex;
-          align-items: center;
-          justify-content: center;
           min-height: 100vh;
           min-width: 100vw;
           padding: 75px 50px;
@@ -67,7 +66,9 @@ const Layout: React.FC<Props> = ({ next, prev, children }) => {
         <div
           css={css`
             padding: 0 100px;
+            min-height: calc(100vh - 125px);
             width: 100%;
+            ${innerStyle ? innerStyle : ''}
           `}
         >
           {children}

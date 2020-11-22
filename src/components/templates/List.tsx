@@ -9,7 +9,12 @@ import Layout from '../organisms/Layout'
 // todo editなど作成
 
 const List: React.FC = () => (
-  <Layout prev={url.dashboard.root}>
+  <Layout
+    prev={url.dashboard.root}
+    innerStyle={css`
+      margin-top: 75px;
+    `}
+  >
     <div
       css={css`
         display: flex;

@@ -16,7 +16,14 @@ type Props = {
 const Dashboard: React.FC<Props> = ({ isEnter, loading, onClick }) => (
   <>
     {loading && <Loader />}
-    <Layout next={url.list}>
+    <Layout
+      next={url.list}
+      innerStyle={css`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      `}
+    >
       <div
         css={css`
           display: flex;
