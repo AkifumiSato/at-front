@@ -4,19 +4,29 @@ import { fetchRecords } from '../lib/api/attendance'
 import { getUser } from '../lib/api/firebase'
 import { userLogoutTriggerCountState } from './atoms'
 
-export const attendanceCalculatedTableState = selector({
+type AttendanceRecord = {
+  id: number
+  date: string
+  start: string
+  end: string
+  break: string
+  sum: string
+}
+
+export const attendanceCalculatedTableState = selector<AttendanceRecord[]>({
   key: 'attendanceCalculatedTableState',
   get: async () => {
     const user = await getUser()
     const records = await fetchRecords(user)
 
-    return records.map((record) => [
-      format(record.start, 'yyyy/MM/dd'),
-      format(record.start, 'HH:mm'),
-      format(record.end, 'HH:mm'),
-      format(startOfToday().getTime() + record.break, 'HH:mm'),
-      format(record.end.getTime() - record.start.getTime(), 'HH:mm'),
-    ])
+    return records.map((record, i) => ({
+      id: i,
+      date: format(record.start, 'yyyy/MM/dd'),
+      start: format(record.start, 'HH:mm'),
+      end: format(record.end, 'HH:mm'),
+      break: format(startOfToday().getTime() + record.break, 'HH:mm'),
+      sum: format(record.end.getTime() - record.start.getTime(), 'HH:mm'),
+    }))
   },
 })
 

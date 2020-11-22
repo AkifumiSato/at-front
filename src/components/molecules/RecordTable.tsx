@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import * as React from 'react'
 import { css, jsx } from '@emotion/core'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { attendanceRecordEditingIdState } from '../../recoil/atoms'
 import { attendanceCalculatedTableState } from '../../recoil/selectors'
 import { color } from '../../stylesheets/color'
 import { ErrorBoundary } from '../atoms/ErrorBoundary'
@@ -20,9 +21,14 @@ const Title: React.FC = ({ children }) => (
 
 type ButtonProps = {
   textColor: string
+  onClick?: () => void
 }
 
-const Button: React.FC<ButtonProps> = ({ textColor, children }) => (
+const Button: React.FC<ButtonProps> = ({
+  textColor,
+  onClick = () => false,
+  children,
+}) => (
   <button
     css={css`
       border-radius: 5px;
@@ -40,17 +46,27 @@ const Button: React.FC<ButtonProps> = ({ textColor, children }) => (
           inset ${color.white} -2px -2px 5px;
       }
     `}
+    onClick={onClick}
   >
     {children}
   </button>
 )
 
+const TdRecordStyle = css`
+  padding: 20px 30px;
+  font-size: 18px;
+`
+
 const RecordDetail: React.FC = () => {
-  const columns = useRecoilValue(attendanceCalculatedTableState)
+  const records = useRecoilValue(attendanceCalculatedTableState)
+  const [recordEditId, setRecordEditId] = useRecoilState(
+    attendanceRecordEditingIdState
+  )
+  console.log(recordEditId)
 
   return (
     <tbody>
-      {columns.map((column, i) => (
+      {records.map((record, i) => (
         <tr
           key={i}
           css={css`
@@ -59,17 +75,11 @@ const RecordDetail: React.FC = () => {
             }
           `}
         >
-          {column.map((item, i) => (
-            <td
-              key={i}
-              css={css`
-                padding: 20px 30px;
-                font-size: 18px;
-              `}
-            >
-              {item}
-            </td>
-          ))}
+          <td css={TdRecordStyle}>{record.date}</td>
+          <td css={TdRecordStyle}>{record.start}</td>
+          <td css={TdRecordStyle}>{record.end}</td>
+          <td css={TdRecordStyle}>{record.break}</td>
+          <td css={TdRecordStyle}>{record.sum}</td>
           <td
             css={css`
               font-size: 18px;
@@ -83,7 +93,12 @@ const RecordDetail: React.FC = () => {
                 width: 200px;
               `}
             >
-              <Button textColor={color.green['300']}>edit</Button>
+              <Button
+                textColor={color.green['300']}
+                onClick={() => setRecordEditId(record.id)}
+              >
+                edit
+              </Button>
               <Button textColor={color.orange['200']}>delete</Button>
             </div>
           </td>
